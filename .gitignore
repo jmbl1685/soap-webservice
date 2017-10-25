@@ -1,4 +1,4 @@
-SOAPWebServices/*/obj
-SOAPWebServices/*/bin
-SOAPWebServices/packages
+*/*/obj
+*/*/bin
+*/packages
 .vs
