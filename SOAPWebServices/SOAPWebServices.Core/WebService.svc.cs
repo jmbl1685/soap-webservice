@@ -7,16 +7,18 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Threading.Tasks;
 using FireSharp.Response;
+using Newtonsoft.Json;
 using SOAPWebServices.Entities;
 using SOAPWebServices.Entities.Response;
+using FireSharp.Interfaces;
 
 namespace SOAPWebServices.Core
 {
     public class Service1 : IWebService
     {
+        IFirebaseClient client = FirebaseConnection.Connection.Client();
         public async Task<ServiceResponse> AddPeople(People people)
-        {
-            var client = FirebaseConnection.Connection.Client();
+        {           
             var response = await client.PushAsync("people", people);
             return new ServiceResponse()
             {
@@ -25,11 +27,19 @@ namespace SOAPWebServices.Core
             };
         }
 
-        public async Task<ServiceResponse> GetPeople()
-        {
-            var client = FirebaseConnection.Connection.Client();
+        public async Task<IDictionary<string, People>> GetPeople()
+        {                    
             var response = await client.GetAsync("people");
-            return null;
+            var data = response?.ResultAs<IDictionary<string, People>>();            
+            return data;
+        }
+
+        public async Task<People> GetByIDPeople(string key)
+        {
+            var response = await client.GetAsync($"people/{key}");
+            var data = response?.ResultAs<People>();
+
+            return data;
         }
 
     }

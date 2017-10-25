@@ -20,10 +20,10 @@ namespace SOAPWebServices.Core
         Task<ServiceResponse> AddPeople(People people);
 
         [OperationContract(Name = "Get")]
-        Task<ServiceResponse> GetPeople();
+        Task<IDictionary<string, People>> GetPeople();
 
-        //[OperationContract(Name = "GetByID")]
-        //Task<ServiceResponse> GetByIDPeople(string UUID);
+        [OperationContract(Name = "GetByID")]
+        Task<People> GetByIDPeople(string UUID);
 
         //[OperationContract(Name = "Put")]
         //Task<ServiceResponse> UpdatePeople(string UUID, People people);
