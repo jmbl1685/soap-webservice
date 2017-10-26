@@ -30,7 +30,7 @@ namespace SOAPWebServices.Core
         public async Task<IDictionary<string, People>> GetPeople()
         {                    
             var response = await client.GetAsync("people");
-            var data = response?.ResultAs<IDictionary<string, People>>();            
+            var data = response.ResultAs<IDictionary<string, People>>();            
             return data;
         }
 
@@ -38,9 +38,32 @@ namespace SOAPWebServices.Core
         {
             var response = await client.GetAsync($"people/{key}");
             var data = response?.ResultAs<People>();
+            return data;
+        }
+
+        public async Task<People> UpdatePeople(string key, People people)
+        {
+            People data = null;
+            if (await GetByIDPeople(key) != null)
+            {
+                var response = await client.UpdateAsync($"people/{key}", people);
+                data = new People();
+                data = response?.ResultAs<People>();
+            }
 
             return data;
         }
 
+        public async Task<People> RemovePeople(string key)
+        {
+            People data = null;
+            if (await GetByIDPeople(key) != null)
+            {
+                var response = await client.DeleteAsync($"people/{key}");
+                data = new People();
+                data = response?.ResultAs<People>();             
+            }
+            return data;
+        }
     }
 }

@@ -25,11 +25,11 @@ namespace SOAPWebServices.Core
         [OperationContract(Name = "GetByID")]
         Task<People> GetByIDPeople(string UUID);
 
-        //[OperationContract(Name = "Put")]
-        //Task<ServiceResponse> UpdatePeople(string UUID, People people);
+        [OperationContract(Name = "Put")]
+        Task<People> UpdatePeople(string UUID, People people);
 
-        //[OperationContract(Name = "Delete")]
-        //Task<ServiceResponse> RemovePeople(string UUID);
+        [OperationContract(Name = "Delete")]
+        Task<People> RemovePeople(string UUID);
 
     }
 
