@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?wsdl=wsdl0" filename="WebService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?wsdl" filename="WebService0.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?xsd=xsd4" filename="WebService.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?xsd=xsd2" filename="WebService0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?xsd=xsd3" filename="WebService1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?xsd=xsd0" filename="WebService2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc?xsd=xsd1" filename="WebService3.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

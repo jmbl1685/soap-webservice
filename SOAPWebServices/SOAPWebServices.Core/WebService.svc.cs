@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FireSharp.Response;
-using Newtonsoft.Json;
 using SOAPWebServices.Entities;
 using SOAPWebServices.Entities.Response;
 using FireSharp.Interfaces;
 
 namespace SOAPWebServices.Core
 {
-    public class Service1 : IWebService
+    public class WebService : IWebService
     {
         IFirebaseClient client = FirebaseConnection.Connection.Client();
         public async Task<ServiceResponse> AddPeople(People people)
