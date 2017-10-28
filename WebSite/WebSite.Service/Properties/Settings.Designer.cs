@@ -27,9 +27,9 @@ namespace WebSite.Service.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.1.66:8089/SOAPWebServices.Core/WebService.svc")]
-        public string WebSite_Service_SOAPWebService_Firebase_WebService {
+        public string WebSite_Service_WebService_SOAP_Firebase_WebService {
             get {
-                return ((string)(this["WebSite_Service_SOAPWebService_Firebase_WebService"]));
+                return ((string)(this["WebSite_Service_WebService_SOAP_Firebase_WebService"]));
             }
         }
     }
