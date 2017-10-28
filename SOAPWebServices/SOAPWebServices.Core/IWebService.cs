@@ -17,19 +17,19 @@ namespace SOAPWebServices.Core
     {
 
         [OperationContract(Name = "Post")]
-        Task<ServiceResponse> AddPeople(People people);
+        ServiceResponse AddPeople(People people);
 
         [OperationContract(Name = "Get")]
-        Task<IDictionary<string, People>> GetPeople();
+        IDictionary<string, People> GetPeople();
 
         [OperationContract(Name = "GetByID")]
-        Task<People> GetByIDPeople(string UUID);
+        People GetByIDPeople(string UUID);
 
         [OperationContract(Name = "Put")]
-        Task<People> UpdatePeople(string UUID, People people);
+        People UpdatePeople(string UUID, People people);
 
         [OperationContract(Name = "Delete")]
-        Task<People> RemovePeople(string UUID);
+        People RemovePeople(string UUID);
 
     }
 

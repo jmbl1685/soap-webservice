@@ -8,54 +8,65 @@ namespace SOAPWebServices.Core
 {
     public class WebService : IWebService
     {
+
         IFirebaseClient client = FirebaseConnection.Connection.Client();
-        public async Task<ServiceResponse> AddPeople(People people)
+
+        #region AddPeople 
+        public ServiceResponse AddPeople(People people)
         {           
-            var response = await client.PushAsync("people", people);
+            var response = client.Push("people", people);
             return new ServiceResponse()
             {
                 FirebaseID = response.Result.name,
                 Status = response.StatusCode.ToString()
             };
         }
+        #endregion
 
-        public async Task<IDictionary<string, People>> GetPeople()
+        #region GetPeople 
+        public IDictionary<string, People> GetPeople()
         {                    
-            var response = await client.GetAsync("people");
-            var data = response.ResultAs<IDictionary<string, People>>();            
-            return data;
+            var response = client.Get("people");
+            return response?.ResultAs<IDictionary<string, People>>();            
         }
+        #endregion
 
-        public async Task<People> GetByIDPeople(string key)
+        #region GetByIDPeople 
+        public People GetByIDPeople(string key)
         {
-            var response = await client.GetAsync($"people/{key}");
-            var data = response?.ResultAs<People>();
-            return data;
+            var response = client.Get($"people/{key}");
+            return response?.ResultAs<People>();
         }
+        #endregion
 
-        public async Task<People> UpdatePeople(string key, People people)
+        #region UpdatePeople 
+        public People UpdatePeople(string key, People people)
         {
             People data = null;
-            if (await GetByIDPeople(key) != null)
+            if (GetByIDPeople(key) != null)
             {
-                var response = await client.UpdateAsync($"people/{key}", people);
+                var response = client.Update($"people/{key}", people);
                 data = new People();
                 data = response?.ResultAs<People>();
             }
 
             return data;
         }
+        #endregion
 
-        public async Task<People> RemovePeople(string key)
+        #region RemovePeople
+        public People RemovePeople(string key)
         {
             People data = null;
-            if (await GetByIDPeople(key) != null)
+            if (GetByIDPeople(key) != null)
             {
-                var response = await client.DeleteAsync($"people/{key}");
+                var response = client.Delete($"people/{key}");
                 data = new People();
                 data = response?.ResultAs<People>();             
             }
             return data;
         }
+        #endregion
+
     }
 }
