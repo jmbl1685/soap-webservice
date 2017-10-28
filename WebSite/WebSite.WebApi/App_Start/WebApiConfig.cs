@@ -9,6 +9,9 @@ namespace WebSite.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            var formatters = config.Formatters;
+            formatters.Remove(formatters.XmlFormatter);
+
             config.MapHttpAttributeRoutes();
         }
     }
