@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebSite.Service;
+using WebSite.Service.WebService.SOAP_Firebase;
 
 namespace WebSite.Test
 {
@@ -9,12 +10,35 @@ namespace WebSite.Test
     public class UnitTest
     {
         [TestMethod]
-        public async Task SoapServiceTest()
+        public void SoapServiceTest()
         {
-            SoapService soap = new SoapService();
-            var request = String.Format(@"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:soap=""soap"" xmlns:soap1=""http://schemas.datacontract.org/2004/07/SOAPWebServices.Entities""><soapenv:Header/><soapenv:Body><soap:Post><soap:people><soap1:Gender>Male</soap1:Gender><soap1:Image>james.png</soap1:Image><soap1:Name>James Rodriguez</soap1:Name></soap:people></soap:Post></soapenv:Body></soapenv:Envelope>");
-            var response = await soap.PostXmlRequest("http://localhost:8089/SOAPWebServices.Core/WebService.svc?wsdl", request);
-            
+            SoapService webServicesCall = new SoapService();
+
+            People people = new People()
+            {
+                Gender = "Male",
+                Name = "Radamel Falcao",
+                Image = "https://informe360.com/deportes/wp-content/uploads/2017/02/falcao-500x500_c.jpg"
+            };
+
+            var responseAddPeople = webServicesCall.AddPeople(people);
+            string key = responseAddPeople.FirebaseID;
+
+            var responseGetPeople = webServicesCall.GetPeople();
+            var responseGetByIDPeople = webServicesCall.GetByIDPeople(key);
+            var responseUpdatePeople = webServicesCall.UpdatePeople(key,people);
+            var responseRemovePeople = webServicesCall.RemovePeople(key);
+
+            Assert.IsNotNull(responseAddPeople);
+            Assert.AreEqual("OK",responseAddPeople.Status);
+            Assert.IsNotNull(responseGetPeople);
+            Assert.IsNotNull(responseGetByIDPeople);
+            Assert.IsNotNull(responseUpdatePeople);
+
+            // TODO: Pending to check.
+            Assert.AreEqual(null, responseRemovePeople);
+
+
         }
     }
 }
